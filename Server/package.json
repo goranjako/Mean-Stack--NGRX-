@@ -1,0 +1,22 @@
+{
+  "name": "mean-stack--ngrx-",
+  "version": "1.0.0",
+  "description": "NGRX",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goranjako/Mean-Stack--NGRX-.git"
+  },
+  "keywords": [
+    "ngrx"
+  ],
+  "author": "Goran Jakovljevic",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/goranjako/Mean-Stack--NGRX-/issues"
+  },
+  "homepage": "https://github.com/goranjako/Mean-Stack--NGRX-#readme"
+}
