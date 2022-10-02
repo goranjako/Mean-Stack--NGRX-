@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start-prod": "lite-server --baseDir=dist/client/",
-    "build": "ng build --prod",
+    "prod": "lite-server  --baseDir=dist/client/",
+    "build": "ng build ",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
