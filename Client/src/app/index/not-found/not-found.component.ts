@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SwalService } from 'src/app/shared/swal.service';
 
 @Component({
   selector: 'app-not-found',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./not-found.component.scss']
 })
 export class NotFoundComponent implements OnInit {
-
-  constructor() { }
+  constructor(private toast:SwalService) { }
 
   ngOnInit(): void {
   }
+
 
 }
