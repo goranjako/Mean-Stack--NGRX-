@@ -45,15 +45,15 @@ export class LoginComponent implements OnInit {
       ])
     ),
   });
-
+//get email
   get email() {
     return this.registerForm.get('email');
   }
-
+//get password
   get password() {
     return this.registerForm.get('password');
   }
-
+//submit Form
   onSubmit(f: any) {
     if (this.registerForm.invalid) {
       return;
@@ -66,8 +66,6 @@ export class LoginComponent implements OnInit {
       this.registerForm.reset();
       this.log.getToken();
       this.loading.hide();
-
-
     },
       (err: { error: { msg: any; }; }) => {
       this.toast.show( err.error.msg);
