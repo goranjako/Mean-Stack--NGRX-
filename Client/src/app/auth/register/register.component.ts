@@ -67,7 +67,7 @@ export class RegisterComponent implements OnInit {
         next: (res) => {
           this.loading.hide();
           this.toast.success(res.msg);
-          this.router.navigate(['/todo']);
+          this.router.navigate(['/contacts']);
           this.registerForm.reset();
           this.log.getToken();
           this.loading.hide();

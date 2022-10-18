@@ -15,6 +15,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { JwtModule } from '@auth0/angular-jwt';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +40,7 @@ import { JwtModule } from '@auth0/angular-jwt';
       }
     }),
     NgxSpinnerModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

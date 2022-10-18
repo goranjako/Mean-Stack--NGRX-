@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
         next: (res) => {
           this.loading.hide();
           this.toast.success(res.msg);
-          this.router.navigate(['/todo']);
+          this.router.navigate(['/contacts']);
           this.loginForm.reset();
           this.loginService.getToken();
           this.loading.hide();
