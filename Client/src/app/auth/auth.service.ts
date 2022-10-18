@@ -1,13 +1,19 @@
 
 import { Injectable, ErrorHandler } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { User } from './user';
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import  jwt_decode from 'jwt-decode';
+
 import { retry, catchError } from 'rxjs/operators';
 import {environment} from '../../environments/environment';
 import { SwalService } from '../shared/swal.service';
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+}
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +24,10 @@ export class AuthService {
   apiUrl = environment.apiUrl;
  constructor(private http: HttpClient, private toast: SwalService ) { }
 
- register(user:any): Observable<User> {
+ registers(user:any): Observable<User> {
    return this.http.post<any>(this.apiUrl +'/register', user)
    .pipe(map(user => {
+    console.log(user)
      // register successful if there's a jwt token in the response
      if (user && user.token) {
        // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -30,6 +37,18 @@ export class AuthService {
    }));
  }
 
+ register(user:any): Observable<User> {
+  return this.http.post<any>(this.apiUrl + '/register', JSON.stringify(user), httpOptions)
+  .pipe(
+    //catchError(this.errorHandler)  
+  )
+}
+  httpOptions<T>(arg0: string, arg1: string, httpOptions: any) {
+    throw new Error('Method not implemented.');
+  }
+  errorHandler(errorHandler: any): import("rxjs").OperatorFunction<import("@angular/common/http").HttpEvent<any>, any> {
+    throw new Error('Method not implemented.');
+  }
 
  login(authCredentials:any) {
    return this.http.post<any>(this.apiUrl +'/login', authCredentials)

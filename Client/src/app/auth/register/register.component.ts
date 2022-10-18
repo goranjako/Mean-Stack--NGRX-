@@ -1,9 +1,11 @@
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { of } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SwalService } from 'src/app/shared/swal.service';
+
 
 @Component({
   selector: 'app-register',
@@ -15,7 +17,8 @@ export class RegisterComponent implements OnInit {
 
   registerForm!: FormGroup;
 
- constructor(private router: Router,private log: AuthService, private toast: SwalService, private logService: AuthService, private loading: NgxSpinnerService
+ constructor(private router: Router,private log: AuthService, private toast: SwalService, private logService: AuthService,
+  private loading: NgxSpinnerService
       ) {
     }
 
@@ -43,25 +46,11 @@ export class RegisterComponent implements OnInit {
       get email() { return this.registerForm.get('email'); }
       get password() { return this.registerForm.get('password'); }
 //submit
-  onSubmit(f:any) {
-    this.loading.show(),
-     this.logService.register(f).subscribe(
-      res => {
-        this.loading.hide();
-        this.toast.top( res.msg);
-        this.router.navigate(['/contact']);
-        this.registerForm.reset();
-        this.log.getToken();
-        this.loading.hide()
+  onSubmit(f:any):void {
 
-      },
-   err => {
-        this.toast.show( err.error.msg);
-        this.registerForm.reset();
-        this.loading.hide();
+     this.logService.registers(f).subscribe(
+      res=>{this.toast.top(res.msg)}
+     );
+
   }
-  );
-  }
-
-
 }

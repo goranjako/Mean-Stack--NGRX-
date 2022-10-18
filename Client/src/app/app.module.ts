@@ -40,7 +40,7 @@ import { JwtModule } from '@auth0/angular-jwt';
     }),
     NgxSpinnerModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

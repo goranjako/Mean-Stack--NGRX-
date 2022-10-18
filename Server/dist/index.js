@@ -15,7 +15,7 @@ _dotenv.default.config();
  */
 
 
-const port = process.env.port || 4010;
+const port = process.env.port || 4000;
 
 _app.default.set('port', port);
 /**

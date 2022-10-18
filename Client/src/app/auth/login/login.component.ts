@@ -10,7 +10,7 @@ import {
 import { AuthService } from '../auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SwalService } from 'src/app/shared/swal.service';
-import { NgxSpinnerService } from "ngx-spinner";
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -45,34 +45,31 @@ export class LoginComponent implements OnInit {
       ])
     ),
   });
-//get email
+  //get email
   get email() {
     return this.registerForm.get('email');
   }
-//get password
+  //get password
   get password() {
     return this.registerForm.get('password');
   }
-//submit Form
+  //submit Form
   onSubmit(f: any) {
-    if (this.registerForm.invalid) {
-      return;
-    }
-    this.loading.show();
-    this.log.login(f).subscribe(
-      (    res: { msg: any; }) => {
-      this.router.navigate(['/todo']);
-      this.toast.top( res.msg);
-      this.registerForm.reset();
-      this.log.getToken();
-      this.loading.hide();
-    },
-      (err: { error: { msg: any; }; }) => {
-      this.toast.show( err.error.msg);
-      this.router.navigate(['/register']);
-      this.registerForm.reset();
-      this.loading.hide();
-    }
-  );
+    this.loading.show(),
+      this.log.login(f).subscribe({
+        next: (res) => {
+          this.loading.hide();
+          this.toast.show(res.msg);
+          this.router.navigate(['/todo']);
+          this.registerForm.reset();
+          this.log.getToken();
+          this.loading.hide();
+        },
+        error: (err) => {
+          this.toast.show(err.error.msg);
+          this.registerForm.reset();
+          this.loading.hide();
+        },
+      });
   }
 }
