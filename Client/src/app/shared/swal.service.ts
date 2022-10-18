@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 export class SwalService {
   constructor() {}
 
-  top(s: any) {
+  success(s: any) {
     Swal.fire({
       position: 'top-end',
       icon: 'success',
@@ -15,7 +15,7 @@ export class SwalService {
       timer: 2000,
     });
   }
-  show(text: any) {
+  err(text: any) {
     Swal.fire({
       icon: 'warning',
       position: 'center',

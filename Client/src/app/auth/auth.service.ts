@@ -24,7 +24,7 @@ export class AuthService {
   apiUrl = environment.apiUrl;
  constructor(private http: HttpClient, private toast: SwalService ) { }
 
- registers(user:any): Observable<User> {
+ register(user:any): Observable<User> {
    return this.http.post<any>(this.apiUrl +'/register', user)
    .pipe(map(user => {
     console.log(user)
@@ -36,19 +36,6 @@ export class AuthService {
      return user;
    }));
  }
-
- register(user:any): Observable<User> {
-  return this.http.post<any>(this.apiUrl + '/register', JSON.stringify(user), httpOptions)
-  .pipe(
-    //catchError(this.errorHandler)  
-  )
-}
-  httpOptions<T>(arg0: string, arg1: string, httpOptions: any) {
-    throw new Error('Method not implemented.');
-  }
-  errorHandler(errorHandler: any): import("rxjs").OperatorFunction<import("@angular/common/http").HttpEvent<any>, any> {
-    throw new Error('Method not implemented.');
-  }
 
  login(authCredentials:any) {
    return this.http.post<any>(this.apiUrl +'/login', authCredentials)
@@ -73,7 +60,7 @@ export class AuthService {
  logout() {
    // remove user from local storage to log user out
    localStorage.removeItem('jwt');
-   this.toast.show( 'Logout Successful!');
+   this.toast.success( 'Logout Successful!');
  }
 
 

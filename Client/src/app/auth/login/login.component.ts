@@ -20,14 +20,14 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
-    private log: AuthService,
+    private loginService: AuthService,
     private toast: SwalService,
     private loading: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {}
 
-  registerForm = new FormGroup({
+  loginForm = new FormGroup({
     email: new FormControl(
       '',
       Validators.compose([
@@ -47,27 +47,27 @@ export class LoginComponent implements OnInit {
   });
   //get email
   get email() {
-    return this.registerForm.get('email');
+    return this.loginForm.get('email');
   }
   //get password
   get password() {
-    return this.registerForm.get('password');
+    return this.loginForm.get('password');
   }
   //submit Form
   onSubmit(f: any) {
     this.loading.show(),
-      this.log.login(f).subscribe({
+      this.loginService.login(f).subscribe({
         next: (res) => {
           this.loading.hide();
-          this.toast.show(res.msg);
+          this.toast.success(res.msg);
           this.router.navigate(['/todo']);
-          this.registerForm.reset();
-          this.log.getToken();
+          this.loginForm.reset();
+          this.loginService.getToken();
           this.loading.hide();
         },
         error: (err) => {
-          this.toast.show(err.error.msg);
-          this.registerForm.reset();
+          this.toast.err(err.error.msg);
+          this.loginForm.reset();
           this.loading.hide();
         },
       });
