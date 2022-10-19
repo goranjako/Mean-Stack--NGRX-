@@ -14,6 +14,11 @@ import { RegisterComponent } from './auth/register/register.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { JwtModule } from '@auth0/angular-jwt';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 
 @NgModule({
@@ -39,7 +44,11 @@ import { JwtModule } from '@auth0/angular-jwt';
 
       }
     }),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    StoreRouterConnectingModule.forRoot(),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([])
 
   ],
   providers: [],
