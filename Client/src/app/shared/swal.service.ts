@@ -23,6 +23,14 @@ export class SwalService {
       text: text,
     });
   }
+  warning(text: any) {
+    Swal.fire({
+      icon: 'warning',
+      position: 'center',
+      title: 'Oops...',
+      text: "ERR_CONNECTION_REFUSED",
+    });
+  }
   logaut() {
     Swal.fire({
       position: 'center',
@@ -31,3 +39,4 @@ export class SwalService {
     });
   }
 }
+

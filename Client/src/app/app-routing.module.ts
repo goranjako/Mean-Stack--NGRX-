@@ -11,13 +11,13 @@ const routes: Routes = [
 
   {path:"", redirectTo:"contacts",pathMatch:"full"},
   {path:"register", component: RegisterComponent},
-  { path: 'contacts', loadChildren: () => import('./contacts/contacts.module').then(m => m.ContactsModule),canActivate:[AuthGuard]  },
   {path:"login", component: LoginComponent},
+  { path: 'contacts', loadChildren: () => import('./contacts/contacts.module').then(m => m.ContactsModule),canActivate:[AuthGuard]  },
   {path:"**", component:NotFoundComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)], 
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

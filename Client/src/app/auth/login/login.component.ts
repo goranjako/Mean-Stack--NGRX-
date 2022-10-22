@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
           this.loading.hide();
         },
         error: (err) => {
-          this.toast.err(err.error.msg);
+          this.toast.err(this.loginService.errorHandl(err));
           this.loginForm.reset();
           this.loading.hide();
         },
