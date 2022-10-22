@@ -73,7 +73,7 @@ export class RegisterComponent implements OnInit {
           this.loading.hide();
         },
         error: (err) => {
-          this.toast.err(this.log.errorHandl(err));
+          this.toast.err(err.error.msg);
           this.registerForm.reset();
           this.loading.hide();
         },
