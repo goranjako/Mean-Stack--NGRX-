@@ -9,6 +9,8 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { AddContactComponent } from './add-contact/add-contact.component';
 import { EditContactComponent } from './edit-contact/edit-contact.component';
+import { ContactsEffect } from './store/efect';
+import { contactsReducer } from './store/redux';
 
 
 @NgModule({
@@ -23,8 +25,8 @@ import { EditContactComponent } from './edit-contact/edit-contact.component';
     FlexLayoutModule,
     MaterialModule,
     NgxSpinnerModule,
-    StoreModule.forRoot({{'contacts': contactReducer}}, {}),
-    EffectsModule.forRoot([]ContactEffect )
+    StoreModule.forFeature('contacts', contactsReducer ),
+    EffectsModule.forFeature([ContactsEffect ]),
   ]
 })
 export class ContactsModule { }

@@ -1,5 +1,5 @@
 import { Action, createAction, props } from '@ngrx/store';
-import { Contact } from '../Contact';
+import { Contact } from '../contact';
 
 
 
@@ -33,7 +33,7 @@ export enum ActionTypes {
 
  const loadContactsSuccessAction = createAction(
   ActionTypes.LOAD_Contacts_SUCCESS,
-  props<{ Contact: any }>()
+  props<{ contact: any }>()
 );
 
  const loadContactsFailureAction = createAction(
@@ -55,14 +55,14 @@ export enum ActionTypes {
 
  const loadSuccessAction = createAction(
   ActionTypes.LOAD_SUCCESS,
-  props<{ items: Contact[] }>()
+  props<{ contact: Contact[] }>()
 );
 
 ////////ADD
 
  const saveRequestAction = createAction(
   ActionTypes.SAVE_REQUEST,
-  props<{ newitem:Contact}>()
+  props<{ newcontact:any}>()
 );
 
  const saveFailureAction = createAction(
@@ -72,7 +72,7 @@ export enum ActionTypes {
 
  const saveSuccessAction = createAction(
   ActionTypes.SAVE_SUCCESS,
-  props<{ newitem: Contact }>()
+  props<{ newcontact: Contact }>()
 );
 
 ///Update
@@ -83,7 +83,7 @@ export enum ActionTypes {
 );
  const updateFailureAction = createAction(
   ActionTypes.UPDATE_FAILURE,
-  props<{ error:  string | null }>()
+  props<{ error:  string  }>()
 );
 
  const updateSuccessAction = createAction(
@@ -95,7 +95,7 @@ export enum ActionTypes {
 
  const deleteRequestAction = createAction(
   ActionTypes.DELETE_REQUEST,
-  props<{ id: any }>()
+  props<{ id:string }>()
 );
 
  const deleteFailureAction = createAction(

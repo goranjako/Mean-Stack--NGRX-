@@ -1,65 +1,43 @@
 
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, Effect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Observable, of as observableOf,withLatestFrom, mergeMap, switchMap, } from 'rxjs';
 import { catchError, map, startWith, } from 'rxjs/operators';
-import {Contact } from '../customer';
-import { ServisService } from '../servis.service';
-
-import {ContactsActions} from './actions';
+import { Contact } from '../contact';
+import { ContactService } from '../contact.service';
+import { ContactsActions} from './actions';
 import { Store } from '@ngrx/store';
 
 
 @Injectable()
-export class ContactsEffect {
-  constructor(private dataService: ServisService,  private actions$: Actions, private store: Store,) {}
+export class  ContactsEffect {
+  constructor(private dataService: ContactService,  private actions$: Actions, private store: Store,) {}
 
   loadCustomersRequestEffect$ = createEffect(() => this.actions$.pipe(
-    ofType(CustomersActions.loadCustomersRequestAction),
+    ofType(ContactsActions.loadContactsRequestAction),
       switchMap(action => {
-        const subject = "Customer";
-        return this.dataService.getTodo(action.id).pipe(
-          map((customer: any) => {
-              returnContactsActions.loadCustomersSuccessAction({Contact })
+        const subject = "Contact";
+        return this.dataService.getContact(action.id).pipe(
+          map((contact: any) => {
+              return ContactsActions.loadContactsSuccessAction({ contact })
           }),
           catchError((error: any) => {
-            return observableOf(CustomersActions.loadCustomersFailureAction({ error }))
+            return observableOf(ContactsActions.loadContactsFailureAction({ error }))
           })
         )
       })
   ))
-/*
-  deleteBooksAPI$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(invokeDeleteBookAPI),
-      switchMap((actions) => {
-        this.appStore.dispatch(
-          setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
-        );
-        return this.booksService.delete(actions.id).pipe(
-          map(() => {
-            this.appStore.dispatch(
-              setAPIStatus({
-                apiStatus: { apiResponseMessage: '', apiStatus: 'success' },
-              })
-            );
-            return deleteBookAPISuccess({ id: actions.id });
-          })
-        );
-      })
-    );
-  });
-*/
+
 
   loadRequestEffect$
   = createEffect(() => this.actions$.pipe(
-    ofType(CustomersActions.loadRequestAction),
-      mergeMap(() => this.dataService.getTodos().pipe(
-          map((items:Customer[]) => {
-              returnContactsActions.loadSuccessAction({ items })
+    ofType(ContactsActions.loadRequestAction),
+      mergeMap(() => this.dataService.getContacts().pipe(
+          map((contact:Contact[]) => {
+              return ContactsActions.loadSuccessAction({ contact })
           }),
           catchError(error => {
-            return observableOf(CustomersActions.saveFailureAction({ error }))
+            return observableOf(ContactsActions.saveFailureAction({ error }))
           })
         )
       )
@@ -69,64 +47,44 @@ export class ContactsEffect {
 
 
   saveRequestEffect$ = createEffect(() => this.actions$.pipe(
-    ofType(CustomersActions.saveRequestAction),
+    ofType(ContactsActions.saveRequestAction),
       switchMap((action) => {
-        return this.dataService.postTodo(action.newitem).pipe(
-          map((newitem:Contact) => {
-              returnContactsActions.saveSuccessAction({ newitem })
+        return this.dataService.postContact(action.newcontact).pipe(
+          map((newcontact: Contact) => {
+              return ContactsActions.saveSuccessAction({ newcontact })
           }),
           catchError(error => {
-            return observableOf(CustomersActions.saveFailureAction({ error }))
+            return observableOf(ContactsActions.saveFailureAction({ error }))
           })
         )
       })
   ))
 
   updateRequestEffect$ = createEffect(() => this.actions$.pipe(
-    ofType(CustomersActions.updateRequestAction),
+    ofType(ContactsActions.updateRequestAction),
     switchMap((action) => {
-      return this.dataService.updateTodo(action).pipe(
+      return this.dataService.updateContact(action).pipe(
           map((update:any) => {
-              returnContactsActions.updateSuccessAction({update})
+              return ContactsActions.updateSuccessAction({update})
          }),
           catchError(error => {
-            return observableOf(CustomersActions.updateFailureAction({ error }))
+            return observableOf(ContactsActions.updateFailureAction({ error }))
           })
         )
       })
   ))
-/*
-   updateBookAPI$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(invokeUpdateBookAPI),
-      switchMap((action) => {
-        this.appStore.dispatch(
-          setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
-        );
-        return this.booksService.update(action.updateBook).pipe(
-          map((data) => {
-            this.appStore.dispatch(
-              setAPIStatus({
-                apiStatus: { apiResponseMessage: '', apiStatus: 'success' },
-              })
-            );
-            return updateBookAPISucess({ updateBook: data });
-          })
-        );
-      })
-    );
-  });
 
-*/
+
   deleteRequestEffect$ = createEffect(() => this.actions$.pipe(
-    ofType(CustomersActions.deleteRequestAction),
+    ofType(ContactsActions.deleteRequestAction),
     switchMap((actions) => {
-      return this.dataService.deleteTodo(actions.id).pipe(
+      return this.dataService.deleteContact(actions.id).pipe(
           map(() => {
-              return ContactsActions.deleteSuccessAction({id:actions.id})
+              return  ContactsActions.deleteSuccessAction({id:actions.id})
           }),
           catchError(error => {
-            return observableOf(CustomersActions.deleteFailureAction({ error }))
+            return observableOf(ContactsActions.deleteFailureAction({ error }))
+
           })
         )
     })
