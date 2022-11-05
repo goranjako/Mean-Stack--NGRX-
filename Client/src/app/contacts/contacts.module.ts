@@ -11,7 +11,9 @@ import { ContactsComponent } from './contacts.component';
   ],
   imports: [
     CommonModule,
-    ContactsRoutingModule
+    ContactsRoutingModule,
+    FlexLayoutModule,
+    MaterialModule
   ]
 })
 export class ContactsModule { }
