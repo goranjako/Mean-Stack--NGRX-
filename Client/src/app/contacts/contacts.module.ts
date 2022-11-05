@@ -23,8 +23,8 @@ import { EditContactComponent } from './edit-contact/edit-contact.component';
     FlexLayoutModule,
     MaterialModule,
     NgxSpinnerModule,
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([])
+    StoreModule.forRoot({{'contacts': contactReducer}}, {}),
+    EffectsModule.forRoot([]ContactEffect )
   ]
 })
 export class ContactsModule { }
