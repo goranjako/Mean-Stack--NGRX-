@@ -12,7 +12,7 @@ import { Store } from '@ngrx/store';
 @Injectable()
 export class  ContactsEffect {
   constructor(private dataService: ContactService,  private actions$: Actions, private store: Store,) {}
-
+//GetContact
   loadCustomersRequestEffect$ = createEffect(() => this.actions$.pipe(
     ofType(ContactsActions.loadContactsRequestAction),
       switchMap(action => {
@@ -27,8 +27,7 @@ export class  ContactsEffect {
         )
       })
   ))
-
-
+//GetContacts
   loadRequestEffect$
   = createEffect(() => this.actions$.pipe(
     ofType(ContactsActions.loadRequestAction),
@@ -37,15 +36,13 @@ export class  ContactsEffect {
               return ContactsActions.loadSuccessAction({ contact })
           }),
           catchError(error => {
-            return observableOf(ContactsActions.saveFailureAction({ error }))
+            return observableOf(ContactsActions.loadFailureAction({ error }))
           })
         )
       )
   )
   );
-
-
-
+//PostContact
   saveRequestEffect$ = createEffect(() => this.actions$.pipe(
     ofType(ContactsActions.saveRequestAction),
       switchMap((action) => {
@@ -59,7 +56,7 @@ export class  ContactsEffect {
         )
       })
   ))
-
+//UpdateContact
   updateRequestEffect$ = createEffect(() => this.actions$.pipe(
     ofType(ContactsActions.updateRequestAction),
     switchMap((action) => {
@@ -74,7 +71,7 @@ export class  ContactsEffect {
       })
   ))
 
-
+//DeleteContact
   deleteRequestEffect$ = createEffect(() => this.actions$.pipe(
     ofType(ContactsActions.deleteRequestAction),
     switchMap((actions) => {
@@ -84,7 +81,6 @@ export class  ContactsEffect {
           }),
           catchError(error => {
             return observableOf(ContactsActions.deleteFailureAction({ error }))
-
           })
         )
     })

@@ -1,8 +1,6 @@
 import { Action, createAction, props } from '@ngrx/store';
 import { Contact } from '../contact';
 
-
-
 export enum ActionTypes {
   LOAD_Contacts_REQUEST = '[Contacts] Load Contacts Request',
   LOAD_Contacts_FAILURE = '[Contacts] Load Contacts Failure',
@@ -22,90 +20,87 @@ export enum ActionTypes {
 
   DELETE_REQUEST = '[Contacts] Delete',
   DELETE_FAILURE = '[Contacts] Delete Failure',
-  DELETE_SUCCESS = '[Contacts] Delete Success'
+  DELETE_SUCCESS = '[Contacts] Delete Success',
 }
 
 //ID
- const loadContactsRequestAction = createAction(
+const loadContactsRequestAction = createAction(
   ActionTypes.LOAD_Contacts_REQUEST,
   props<{ id: string }>()
 );
 
- const loadContactsSuccessAction = createAction(
+const loadContactsSuccessAction = createAction(
   ActionTypes.LOAD_Contacts_SUCCESS,
   props<{ contact: any }>()
 );
 
- const loadContactsFailureAction = createAction(
+const loadContactsFailureAction = createAction(
   ActionTypes.LOAD_Contacts_FAILURE,
   props<{ error: string }>()
 );
 
 ///////ALL
 
- const loadRequestAction = createAction(
-  ActionTypes.LOAD_REQUEST,
+const loadRequestAction = createAction(ActionTypes.LOAD_REQUEST);
 
-);
-
- const loadFailureAction = createAction(
+const loadFailureAction = createAction(
   ActionTypes.LOAD_FAILURE,
   props<{ error: string }>()
 );
 
- const loadSuccessAction = createAction(
+const loadSuccessAction = createAction(
   ActionTypes.LOAD_SUCCESS,
   props<{ contact: Contact[] }>()
 );
 
 ////////ADD
 
- const saveRequestAction = createAction(
+const saveRequestAction = createAction(
   ActionTypes.SAVE_REQUEST,
-  props<{ newcontact:any}>()
+  props<{ newcontact: any }>()
 );
 
- const saveFailureAction = createAction(
+const saveFailureAction = createAction(
   ActionTypes.SAVE_FAILURE,
   props<{ error: string }>()
 );
 
- const saveSuccessAction = createAction(
+const saveSuccessAction = createAction(
   ActionTypes.SAVE_SUCCESS,
   props<{ newcontact: Contact }>()
 );
 
 ///Update
 
- const updateRequestAction = createAction(
+const updateRequestAction = createAction(
   ActionTypes.UPDATE_REQUEST,
-  props<{update: any}>()
+  props<{ update: any }>()
 );
- const updateFailureAction = createAction(
+const updateFailureAction = createAction(
   ActionTypes.UPDATE_FAILURE,
-  props<{ error:  string  }>()
+  props<{ error: string }>()
 );
 
- const updateSuccessAction = createAction(
+const updateSuccessAction = createAction(
   ActionTypes.UPDATE_SUCCESS,
-  props<{update: any}>()
+  props<{ update: any }>()
 );
 
 ////Delete
 
- const deleteRequestAction = createAction(
+const deleteRequestAction = createAction(
   ActionTypes.DELETE_REQUEST,
-  props<{ id:string }>()
+  props<{ id: string }>()
 );
 
- const deleteFailureAction = createAction(
+const deleteFailureAction = createAction(
   ActionTypes.DELETE_FAILURE,
-  props<{ error:  string | null }>()
+  props<{ error: string | null }>()
 );
 
- const deleteSuccessAction = createAction(
+const deleteSuccessAction = createAction(
   ActionTypes.DELETE_SUCCESS,
-  props<{ id:any }>()
+  props<{ id: any }>()
 );
 export const ContactsActions = {
   loadContactsRequestAction,
@@ -122,6 +117,5 @@ export const ContactsActions = {
   updateFailureAction,
   deleteRequestAction,
   deleteSuccessAction,
-  deleteFailureAction
-
+  deleteFailureAction,
 };
