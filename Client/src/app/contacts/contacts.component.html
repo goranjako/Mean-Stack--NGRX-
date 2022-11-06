@@ -1,10 +1,7 @@
 <ng-container *ngIf="contacts; else elseTemplate">
-
-
-
-
 <div class="content ">
-  <div style="padding: 1%; width: 2%; margin-left: 90%;"  > <img style="color: blue ;" mat-card-image src="../../assets/Person.png" alt="Contacts" /></div>
+  <div style="padding: 1%; width: 2%; margin-left: 90%;"  > <img style="color: blue ;" mat-card-image src="../../assets/Person.png"
+    (click)="add()" alt="Contacts" /></div>
   <div fxLayout="row wrap" fxLayoutGap="16px grid" >
 
     <div

@@ -40,6 +40,9 @@ export class ContactsComponent implements OnInit {
   trackByMethod(index: number, data: Contact) {
     return data._id;
   }
+  add(){
+    this.router.navigate(["contacts/add"]);
+  }
   edit(contact: any) {
     this.router.navigate(['contacts/edit', contact]);
   }
