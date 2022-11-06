@@ -6,6 +6,7 @@ import { Contact } from './contact';
 import { ContactsActions } from './store/actions';
 import { selectContacts } from './store/selector';
 import Swal from 'sweetalert2';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-contacts',
   templateUrl: './contacts.component.html',
@@ -19,10 +20,14 @@ export class ContactsComponent implements OnInit {
     },
     buttonsStyling: false,
   });
+
+  gridColumns = 4;
+
   constructor(
     private store: Store,
     private router: Router,
-    private token: AuthService
+    private token: AuthService,
+    private loading: NgxSpinnerService
   ) {
     this.store.dispatch(ContactsActions.loadRequestAction());
   }
@@ -35,7 +40,7 @@ export class ContactsComponent implements OnInit {
   trackByMethod(index: number, data: Contact) {
     return data._id;
   }
-  detail(contact: any) {
+  edit(contact: any) {
     this.router.navigate(['contacts/edit', contact]);
   }
 
@@ -73,5 +78,8 @@ export class ContactsComponent implements OnInit {
           );
         }
       });
+  }
+  toggleGridColumns() {
+    this.gridColumns = this.gridColumns === 3 ? 4 : 3;
   }
 }
