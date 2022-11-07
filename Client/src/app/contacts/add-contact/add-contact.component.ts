@@ -104,46 +104,27 @@ userId:any;
     "address":f.address,
     "phone":f.phone,
     "userId":this.userId
-
-
     }
     this.loading.show();
-    this.swalWithBootstrapButtons
-    .fire({
-      title: 'Are you sure?',
-      text: "Your contact has been saved.",
-      icon: 'success',
+    Swal.fire({
+      title: 'Do you want to save the changes?',
+      showDenyButton: true,
       showCancelButton: true,
-      confirmButtonText: 'Save!',
-      cancelButtonText: 'No, cancel!',
-      reverseButtons: true,
-    })
-    .then((result) => {
+      confirmButtonText: 'Save',
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         this.store.dispatch(ContactsActions.saveRequestAction({ newcontact: data }));
-        this.swalWithBootstrapButtons.fire(
-          'Save!',
-          'Your contact has been saved.',
-          'success'
-        );
+        Swal.fire('Saved!', '', 'success')
         this.loading.hide();
         this.router.navigate(["/contacts"])
-      } else if (
-        /* Read more about handling dismissals below */
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-        this.swalWithBootstrapButtons.fire(
-          'Cancelled',
-          'Changes are not saved ',
-          'info'
-        );
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+        this.router.navigate(["/contacts"])
       }
-    });
+    })
 
-
-    this.store.dispatch(ContactsActions.saveRequestAction({ newcontact: data }));
-    this.loading.hide();
-    this.router.navigate(["/contacts"])
 
 }
 getuser(){
