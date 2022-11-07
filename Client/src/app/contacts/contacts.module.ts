@@ -12,6 +12,8 @@ import { EditContactComponent } from './edit-contact/edit-contact.component';
 import { ContactsEffect } from './store/efect';
 import { contactsReducer } from './store/redux';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -24,8 +26,9 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     CommonModule,
     ContactsRoutingModule,
     FlexLayoutModule,
+    FormsModule, ReactiveFormsModule, HttpClientModule,
     MaterialModule,
-    SweetAlert2Module.forRoot(),
+    SweetAlert2Module.forChild(),
     NgxSpinnerModule,
     StoreModule.forFeature('contacts', contactsReducer ),
     EffectsModule.forFeature([ContactsEffect ]),
