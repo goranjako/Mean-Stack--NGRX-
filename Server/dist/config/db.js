@@ -11,6 +11,11 @@ _dotenv.default.config(); //connectDb
 
 const connectDB = async () => {
   try {
+    // Set `strictQuery` to `false` to prepare for the change
+    //mongoose.set('strictQuery', false);
+    // Set `strictQuery` to `true` to suppress the warning message
+    _mongoose.default.set('strictQuery', true);
+
     await _mongoose.default.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true
     });
